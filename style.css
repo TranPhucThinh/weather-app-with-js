@@ -47,6 +47,10 @@ body {
   color: #fff;
 }
 
+::placeholder {
+  color: #fff;
+}
+
 .search-input:focus {
   outline: none;
 }

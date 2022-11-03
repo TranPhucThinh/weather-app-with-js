@@ -10,10 +10,12 @@ const sunrise = document.getElementById('sunrise');
 const sunset = document.getElementById('sunset');
 const humidity = document.getElementById('humidity');
 const speed = document.getElementById('speed');
+const button = document.getElementById('button');
 
-searchInput.addEventListener('change', (e) => {
+button.addEventListener('click', (e) => {
+  e.preventDefault();
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${e.target.value}&appid=${API_KEY}&units=metric&lang=vi`
+    `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${API_KEY}&units=metric&lang=vi`
   ).then(async (res) => {
     const data = await res.json();
     console.log('🚀 ~ file: script.js ~ line 10 ~ ).then ~ data', data);
@@ -33,5 +35,6 @@ searchInput.addEventListener('change', (e) => {
     humidity.innerHTML = data.main.humidity + '%' || DEFAULT_VALUE;
     speed.innerHTML =
       (data.wind.speed * 3.6).toFixed(2) + 'km/h' || DEFAULT_VALUE;
+    searchInput.value = '';
   });
 });
